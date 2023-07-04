@@ -1,0 +1,35 @@
+{
+  "appenderTypesRegister": null,
+  "appenders": {
+    "console": {
+      "type": "UnityLogAppender",
+      "configs": {
+        "layout": {
+          "type": "basic"
+        }
+      }
+    },
+    "file": {
+      "type": "FileAppender",
+      "configs": {
+        "rollType": "Session",
+        "env": "EditorPlayer",
+        "fileName": "Logs/app.log",
+        "layout": {
+          "type": "basic-time"
+        }
+      }
+    }
+  },
+  "catagories": [
+    {
+      "appenders": [
+        "console",
+        "file"
+      ],
+      "level": "all",
+      "name": "default",
+      "matchType": null
+    }
+  ]
+}
