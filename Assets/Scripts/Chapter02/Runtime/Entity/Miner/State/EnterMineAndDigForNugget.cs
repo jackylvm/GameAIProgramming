@@ -11,6 +11,7 @@
 // ==============================================================
 // *************************************************************************************
 
+using Chapter02.Runtime.Enum;
 using Common.Logger;
 
 namespace Chapter02.Runtime.Entity
@@ -19,19 +20,28 @@ namespace Chapter02.Runtime.Entity
     {
         public override void Enter(Miner entity)
         {
-            Logger.UL.Debug($"Hahaha!");
+            Logger.UL.Debug(
+                $"{EntityNames.GetNameOfEntity(entity.ID())}: Walkin' to the goldmine!"
+            );
 
-            base.Enter(entity);
+            entity.Location = EmLocation.Goldmine;
         }
 
         public override void Execute(Miner entity, float deltaTime)
         {
-            base.Execute(entity, deltaTime);
+            entity.AddToGoldCarried(1);
+            entity.IncreaseFatigue();
+
+            Logger.UL.Debug(
+                $"{EntityNames.GetNameOfEntity(entity.ID())}: Pickin' up a nugget!"
+            );
         }
 
         public override void Exit(Miner entity)
         {
-            base.Exit(entity);
+            Logger.UL.Debug(
+                $"{EntityNames.GetNameOfEntity(entity.ID())}: Ah'm leavin' the goldmine with mah pockets full o' sweet gold!"
+            );
         }
     }
 }
