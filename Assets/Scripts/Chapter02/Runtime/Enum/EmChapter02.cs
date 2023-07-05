@@ -23,7 +23,7 @@ namespace Chapter02.Runtime.Enum
 
     public enum EmEntity
     {
-        EntMinerBob,
-        EntElsa
+        EntMinerBob = 1001,
+        EntElsa = 1002
     }
 }
