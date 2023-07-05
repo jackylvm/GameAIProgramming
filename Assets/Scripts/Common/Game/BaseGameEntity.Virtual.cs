@@ -17,7 +17,12 @@ namespace Common.Game
 {
     public partial class BaseGameEntity
     {
-        public virtual void DoUpdate()
+        public virtual void DoStart()
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void DoUpdate(float deltaTime)
         {
             throw new NotImplementedException();
         }
