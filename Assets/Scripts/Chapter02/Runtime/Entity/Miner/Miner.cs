@@ -22,14 +22,18 @@ namespace Chapter02.Runtime.Entity
     public partial class Miner : BaseGameEntity
     {
         public EmLocation Location { get; set; }
-        
+
         private int m_GoldCarried;
         private int m_Fatigue;
+        private int m_Thirst;
+        private int m_MoneyInBank;
 
         public Miner(int id) : base(id)
         {
             m_GoldCarried = 0;
             m_Fatigue = 0;
+            m_Thirst = 0;
+            m_MoneyInBank = 0;
 
             m_Machine = new StateMachine<Miner>(this);
         }

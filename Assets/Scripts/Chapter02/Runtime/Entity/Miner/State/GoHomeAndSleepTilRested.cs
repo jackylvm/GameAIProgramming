@@ -1,10 +1,10 @@
 ﻿// *************************************************************************************
-// FileName: EnterMineAndDigForNugget.cs
+// FileName: GoHomeAndSleepTilRested.cs
 // Description:
 // 
 // Version: v1.0.0
 // Creator: Jacky(jackylvm@foxmail.com)
-// CreationTime: 2023-07-04 15:21:25
+// CreationTime: 2023-07-05 23:59:33
 // ==============================================================
 // History update record:
 // 
@@ -16,44 +16,44 @@ using Common.Logger;
 
 namespace Chapter02.Runtime.Entity
 {
-    public class EnterMineAndDigForNugget : MinerStateBase<EnterMineAndDigForNugget>
+    public class GoHomeAndSleepTilRested : MinerStateBase<GoHomeAndSleepTilRested>
     {
         public override void Enter(Miner entity)
         {
-            if (entity.Location != EmLocation.Goldmine)
+            if (entity.Location != EmLocation.Shack)
             {
                 Logger.UL.Debug(
-                    $"{EntityNames.GetNameOfEntity(entity.ID())}: Walkin' to the goldmine!"
+                    $"{EntityNames.GetNameOfEntity(entity.ID())}: Walkin' home!"
                 );
 
-                entity.Location = EmLocation.Goldmine;
+                entity.Location = EmLocation.Shack;
             }
         }
 
         public override void Execute(Miner entity, float deltaTime)
         {
-            entity.AddToGoldCarried(1);
-            entity.IncreaseFatigue();
-
-            Logger.UL.Debug(
-                $"{EntityNames.GetNameOfEntity(entity.ID())}: Pickin' up a nugget!"
-            );
-
-            if (entity.PocketsFull())
+            if (!entity.Fatigued())
             {
-                entity.FSM().ChangeState(VisitBankAndDepositGold.Instance);
+                Logger.UL.Debug(
+                    $"{EntityNames.GetNameOfEntity(entity.ID())}: What a God darn fantastic nap! Time to find more gold!"
+                );
+
+                entity.FSM().ChangeState(EnterMineAndDigForNugget.Instance);
             }
-
-            if (entity.Thirsty())
+            else
             {
-                entity.FSM().ChangeState(QuenchThirst.Instance);
+                entity.DecreaseFatigue();
+
+                Logger.UL.Debug(
+                    $"{EntityNames.GetNameOfEntity(entity.ID())}: ZZZZ... "
+                );
             }
         }
 
         public override void Exit(Miner entity)
         {
             Logger.UL.Debug(
-                $"{EntityNames.GetNameOfEntity(entity.ID())}: Ah'm leavin' the goldmine with mah pockets full o' sweet gold!"
+                $"{EntityNames.GetNameOfEntity(entity.ID())}: Leaving the house!"
             );
         }
     }

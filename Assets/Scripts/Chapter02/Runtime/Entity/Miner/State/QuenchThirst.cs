@@ -1,10 +1,10 @@
 ﻿// *************************************************************************************
-// FileName: EnterMineAndDigForNugget.cs
+// FileName: QuenchThirst.cs
 // Description:
 // 
 // Version: v1.0.0
 // Creator: Jacky(jackylvm@foxmail.com)
-// CreationTime: 2023-07-04 15:21:25
+// CreationTime: 2023-07-06 00:01:23
 // ==============================================================
 // History update record:
 // 
@@ -16,44 +16,43 @@ using Common.Logger;
 
 namespace Chapter02.Runtime.Entity
 {
-    public class EnterMineAndDigForNugget : MinerStateBase<EnterMineAndDigForNugget>
+    public class QuenchThirst : MinerStateBase<QuenchThirst>
     {
         public override void Enter(Miner entity)
         {
-            if (entity.Location != EmLocation.Goldmine)
+            if (entity.Location != EmLocation.Saloon)
             {
                 Logger.UL.Debug(
-                    $"{EntityNames.GetNameOfEntity(entity.ID())}: Walkin' to the goldmine!"
+                    $"{EntityNames.GetNameOfEntity(entity.ID())}: Boy, ah sure is thusty! Walking to the saloon!"
                 );
 
-                entity.Location = EmLocation.Goldmine;
+                entity.Location = EmLocation.Saloon;
             }
         }
 
         public override void Execute(Miner entity, float deltaTime)
         {
-            entity.AddToGoldCarried(1);
-            entity.IncreaseFatigue();
-
-            Logger.UL.Debug(
-                $"{EntityNames.GetNameOfEntity(entity.ID())}: Pickin' up a nugget!"
-            );
-
-            if (entity.PocketsFull())
-            {
-                entity.FSM().ChangeState(VisitBankAndDepositGold.Instance);
-            }
-
             if (entity.Thirsty())
             {
-                entity.FSM().ChangeState(QuenchThirst.Instance);
+                entity.BuyAndDrinkAWhiskey();
+                Logger.UL.Debug(
+                    $"{EntityNames.GetNameOfEntity(entity.ID())}: That's mighty fine sippin liquer!"
+                );
+
+                entity.FSM().ChangeState(EnterMineAndDigForNugget.Instance);
+            }
+            else
+            {
+                Logger.UL.Debug(
+                    "ERROR!ERROR!ERROR!"
+                );
             }
         }
 
         public override void Exit(Miner entity)
         {
             Logger.UL.Debug(
-                $"{EntityNames.GetNameOfEntity(entity.ID())}: Ah'm leavin' the goldmine with mah pockets full o' sweet gold!"
+                $"{EntityNames.GetNameOfEntity(entity.ID())}: Leaving the saloon, feelin' good!"
             );
         }
     }
