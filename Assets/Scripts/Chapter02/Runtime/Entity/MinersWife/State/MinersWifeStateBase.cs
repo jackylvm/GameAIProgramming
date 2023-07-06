@@ -1,10 +1,10 @@
 ﻿// *************************************************************************************
-// FileName: MinerStateBase.cs
+// FileName: MinersWifeStateBase.cs
 // Description:
 // 
 // Version: v1.0.0
 // Creator: Jacky(jackylvm@foxmail.com)
-// CreationTime: 2023-07-04 15:18:52
+// CreationTime: 2023-07-06 23:18:51
 // ==============================================================
 // History update record:
 // 
@@ -16,7 +16,7 @@ using Common.FSM;
 
 namespace Chapter02.Runtime.Entity
 {
-    public class MinerStateBase<TState> : EntityState<Miner> where TState : class
+    public class MinersWifeStateBase<TState> : EntityState<MinersWife> where TState : class
     {
         private class Nested
         {
@@ -30,15 +30,15 @@ namespace Chapter02.Runtime.Entity
 
         public static TState Instance => Nested.ClassInstance;
 
-        public override void Enter(Miner entity)
+        public override void Enter(MinersWife entity)
         {
         }
 
-        public override void Execute(Miner entity, float deltaTime)
+        public override void Execute(MinersWife entity, float deltaTime)
         {
         }
 
-        public override void Exit(Miner entity)
+        public override void Exit(MinersWife entity)
         {
         }
     }

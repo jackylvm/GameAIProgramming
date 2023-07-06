@@ -22,7 +22,7 @@ namespace Chapter02.Runtime.Entity
         {
             if (entity.Location != EmLocation.Bank)
             {
-                Logger.UL.Debug(
+                IL.UL.Debug(
                     $"{EntityNames.GetNameOfEntity(entity.ID())}: Goin' to the bank. Yes siree!"
                 );
 
@@ -35,13 +35,13 @@ namespace Chapter02.Runtime.Entity
             entity.AddToWealth(entity.GoldCarried());
             entity.SetGoldCarried(0);
 
-            Logger.UL.Debug(
+            IL.UL.Debug(
                 $"{EntityNames.GetNameOfEntity(entity.ID())}: Depositing gold. Total savings now: {entity.Wealth()}"
             );
 
             if (entity.Wealth() >= Miner.ComfortLevel)
             {
-                Logger.UL.Debug(
+                IL.UL.Debug(
                     $"{EntityNames.GetNameOfEntity(entity.ID())}: WooHoo! Rich enough for now. Back home to mah li'lle lady!"
                 );
 
@@ -55,7 +55,7 @@ namespace Chapter02.Runtime.Entity
 
         public override void Exit(Miner entity)
         {
-            Logger.UL.Debug(
+            IL.UL.Debug(
                 $"{EntityNames.GetNameOfEntity(entity.ID())}: Leavin' the bank!"
             );
         }

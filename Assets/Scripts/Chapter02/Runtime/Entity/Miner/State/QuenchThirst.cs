@@ -22,7 +22,7 @@ namespace Chapter02.Runtime.Entity
         {
             if (entity.Location != EmLocation.Saloon)
             {
-                Logger.UL.Debug(
+                IL.UL.Debug(
                     $"{EntityNames.GetNameOfEntity(entity.ID())}: Boy, ah sure is thusty! Walking to the saloon!"
                 );
 
@@ -35,7 +35,7 @@ namespace Chapter02.Runtime.Entity
             if (entity.Thirsty())
             {
                 entity.BuyAndDrinkAWhiskey();
-                Logger.UL.Debug(
+                IL.UL.Debug(
                     $"{EntityNames.GetNameOfEntity(entity.ID())}: That's mighty fine sippin liquer!"
                 );
 
@@ -43,7 +43,7 @@ namespace Chapter02.Runtime.Entity
             }
             else
             {
-                Logger.UL.Debug(
+                IL.UL.Debug(
                     "ERROR!ERROR!ERROR!"
                 );
             }
@@ -51,7 +51,7 @@ namespace Chapter02.Runtime.Entity
 
         public override void Exit(Miner entity)
         {
-            Logger.UL.Debug(
+            IL.UL.Debug(
                 $"{EntityNames.GetNameOfEntity(entity.ID())}: Leaving the saloon, feelin' good!"
             );
         }

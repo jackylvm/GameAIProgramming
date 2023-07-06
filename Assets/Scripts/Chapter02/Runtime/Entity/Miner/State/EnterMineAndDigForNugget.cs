@@ -22,7 +22,7 @@ namespace Chapter02.Runtime.Entity
         {
             if (entity.Location != EmLocation.Goldmine)
             {
-                Logger.UL.Debug(
+                IL.UL.Debug(
                     $"{EntityNames.GetNameOfEntity(entity.ID())}: Walkin' to the goldmine!"
                 );
 
@@ -35,7 +35,7 @@ namespace Chapter02.Runtime.Entity
             entity.AddToGoldCarried(1);
             entity.IncreaseFatigue();
 
-            Logger.UL.Debug(
+            IL.UL.Debug(
                 $"{EntityNames.GetNameOfEntity(entity.ID())}: Pickin' up a nugget!"
             );
 
@@ -52,7 +52,7 @@ namespace Chapter02.Runtime.Entity
 
         public override void Exit(Miner entity)
         {
-            Logger.UL.Debug(
+            IL.UL.Debug(
                 $"{EntityNames.GetNameOfEntity(entity.ID())}: Ah'm leavin' the goldmine with mah pockets full o' sweet gold!"
             );
         }

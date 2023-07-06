@@ -22,7 +22,7 @@ namespace Chapter02.Runtime.Entity
         {
             if (entity.Location != EmLocation.Shack)
             {
-                Logger.UL.Debug(
+                IL.UL.Debug(
                     $"{EntityNames.GetNameOfEntity(entity.ID())}: Walkin' home!"
                 );
 
@@ -34,7 +34,7 @@ namespace Chapter02.Runtime.Entity
         {
             if (!entity.Fatigued())
             {
-                Logger.UL.Debug(
+                IL.UL.Debug(
                     $"{EntityNames.GetNameOfEntity(entity.ID())}: What a God darn fantastic nap! Time to find more gold!"
                 );
 
@@ -44,7 +44,7 @@ namespace Chapter02.Runtime.Entity
             {
                 entity.DecreaseFatigue();
 
-                Logger.UL.Debug(
+                IL.UL.Debug(
                     $"{EntityNames.GetNameOfEntity(entity.ID())}: ZZZZ... "
                 );
             }
@@ -52,7 +52,7 @@ namespace Chapter02.Runtime.Entity
 
         public override void Exit(Miner entity)
         {
-            Logger.UL.Debug(
+            IL.UL.Debug(
                 $"{EntityNames.GetNameOfEntity(entity.ID())}: Leaving the house!"
             );
         }

@@ -1,10 +1,10 @@
 // *************************************************************************************
-// FileName: Miner.cs
+// FileName: MinersWife.cs
 // Description:
 // 
 // Version: v1.0.0
 // Creator: Jacky(jackylvm@foxmail.com)
-// CreationTime: 2023-07-04 15:04:36
+// CreationTime: 2023-07-06 23:13:34
 // ==============================================================
 // History update record:
 // 
@@ -19,30 +19,21 @@ using Common.Game;
 namespace Chapter02.Runtime.Entity
 {
     [Serializable]
-    public partial class Miner : BaseGameEntity
+    public partial class MinersWife : BaseGameEntity
     {
         public EmLocation Location { get; set; }
 
-        private int m_GoldCarried;
-        private int m_Fatigue;
-        private int m_Thirst;
-        private int m_MoneyInBank;
-
-        public Miner(int id) : base(id)
+        public MinersWife(int id) : base(id)
         {
-            m_GoldCarried = 0;
-            m_Fatigue = 0;
-            m_Thirst = 0;
-            m_MoneyInBank = 0;
-
             Location = EmLocation.Shack;
 
-            m_Machine = new StateMachine<Miner>(this);
+            m_Machine = new StateMachine<MinersWife>(this);
         }
 
         public override void DoStart()
         {
-            m_Machine.ChangeState(EnterMineAndDigForNugget.Instance);
+            m_Machine.ChangeState(DoHouseWork.Instance);
+            m_Machine.SetGlobalState(WifeGlobalState.Instance);
         }
 
         public override void DoUpdate(float deltaTime)
