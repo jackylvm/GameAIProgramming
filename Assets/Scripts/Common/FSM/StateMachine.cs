@@ -20,17 +20,17 @@ namespace Common.FSM
         /// <summary>
         /// 当前状态
         /// </summary>
-        public EntityState<TEntityType> CState { get; set; }
+        private EntityState<TEntityType> CState { get; set; }
 
         /// <summary>
         /// 上一状态
         /// </summary>
-        public EntityState<TEntityType> PState { get; set; }
+        private EntityState<TEntityType> PState { get; set; }
 
         /// <summary>
         /// 全局状态
         /// </summary>
-        public EntityState<TEntityType> GState { get; set; }
+        private EntityState<TEntityType> GState { get; set; }
 
         public StateMachine(TEntityType owner)
         {
@@ -39,6 +39,11 @@ namespace Common.FSM
             CState = null;
             PState = null;
             GState = null;
+        }
+
+        public void SetGlobalState(EntityState<TEntityType> state)
+        {
+            GState = state;
         }
 
         public void Update(float deltaTime)
