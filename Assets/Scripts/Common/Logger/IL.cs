@@ -1,5 +1,5 @@
 ﻿// *************************************************************************************
-// FileName: Logger.cs
+// FileName: IL.cs
 // Description:
 // 
 // Version: v1.0.0
@@ -15,11 +15,11 @@ using MS.Log4Unity;
 
 namespace Common.Logger
 {
-    public static class Logger
+    public static class IL
     {
         // private class Nested
         // {
-        //     internal static readonly Logger ClassInstance = Activator.CreateInstance(typeof(Logger), true) as Logger;
+        //     internal static readonly IL ClassInstance = Activator.CreateInstance(typeof(IL), true) as IL;
         //
         //     public static Nested CreateInstance()
         //     {
@@ -27,7 +27,7 @@ namespace Common.Logger
         //     }
         // }
         //
-        // public static Logger Inst => Nested.ClassInstance;
+        // public static IL Inst => Nested.ClassInstance;
 
         public static readonly ULogger UL = LogFactory.GetLogger();
     }
