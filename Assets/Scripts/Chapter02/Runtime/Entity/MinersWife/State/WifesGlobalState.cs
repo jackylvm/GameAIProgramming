@@ -11,6 +11,8 @@
 // ==============================================================
 // *************************************************************************************
 
+using Common.Logger;
+using Common.Message;
 using UnityEngine;
 
 namespace Chapter02.Runtime.Entity
@@ -28,6 +30,27 @@ namespace Chapter02.Runtime.Entity
             {
                 entity.FSM().ChangeState(VisitBathroom.Instance);
             }
+        }
+
+        public override bool OnMessage(MinersWife entity, Telegram telegram)
+        {
+            switch (telegram.MsgType)
+            {
+                case EmMsgType.Msg_HiHoneyImHome:
+                {
+                    IL.UL.Debug(
+                        $"Message handled by {EntityNames.GetNameOfEntity(entity.ID())} at time: {Time.timeSinceLevelLoad}!"
+                    );
+                    IL.UL.Debug(
+                        $"{EntityNames.GetNameOfEntity(entity.ID())}: Hi honey. Let me make you some of mah fine country stew!"
+                    );
+
+                    entity.FSM().ChangeState(CookStew.Instance);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public override void Exit(MinersWife entity)

@@ -13,6 +13,7 @@
 
 using System;
 using Common.FSM;
+using Common.Message;
 
 namespace Chapter02.Runtime.Entity
 {
@@ -40,6 +41,11 @@ namespace Chapter02.Runtime.Entity
 
         public override void Exit(MinersWife entity)
         {
+        }
+
+        public override bool OnMessage(MinersWife entity, Telegram telegram)
+        {
+            return false;
         }
     }
 }

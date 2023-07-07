@@ -12,6 +12,7 @@
 // *************************************************************************************
 
 using System;
+using Common.Message;
 
 namespace Common.Game
 {
@@ -23,6 +24,11 @@ namespace Common.Game
         }
 
         public virtual void DoUpdate(float deltaTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual bool HandleMessage(Telegram telegram)
         {
             throw new NotImplementedException();
         }

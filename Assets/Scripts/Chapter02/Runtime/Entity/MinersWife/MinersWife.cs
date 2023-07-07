@@ -22,10 +22,12 @@ namespace Chapter02.Runtime.Entity
     public partial class MinersWife : BaseGameEntity
     {
         public EmLocation Location { get; set; }
+        public bool Cooking { get; set; }
 
         public MinersWife(int id) : base(id)
         {
             Location = EmLocation.Shack;
+            Cooking = false;
 
             m_Machine = new StateMachine<MinersWife>(this);
         }

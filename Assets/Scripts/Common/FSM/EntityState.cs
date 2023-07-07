@@ -11,6 +11,8 @@
 // ==============================================================
 // *************************************************************************************
 
+using Common.Message;
+
 namespace Common.FSM
 {
     public abstract class EntityState<TEntityType>
@@ -18,5 +20,6 @@ namespace Common.FSM
         public abstract void Enter(TEntityType entity);
         public abstract void Execute(TEntityType entity, float deltaTime);
         public abstract void Exit(TEntityType entity);
+        public abstract bool OnMessage(TEntityType entity, Telegram telegram);
     }
 }

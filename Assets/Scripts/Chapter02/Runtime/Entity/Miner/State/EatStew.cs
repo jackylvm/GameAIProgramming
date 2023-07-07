@@ -1,53 +1,42 @@
 ﻿// *************************************************************************************
-// FileName: MinerStateBase.cs
+// FileName: EatStew.cs
 // Description:
 // 
 // Version: v1.0.0
 // Creator: Jacky(jackylvm@foxmail.com)
-// CreationTime: 2023-07-04 15:18:52
+// CreationTime: 2023-07-08 00:18:07
 // ==============================================================
 // History update record:
 // 
 // ==============================================================
 // *************************************************************************************
 
-using System;
-using Common.FSM;
 using Common.Logger;
-using Common.Message;
 
 namespace Chapter02.Runtime.Entity
 {
-    public class MinerStateBase<TState> : EntityState<Miner> where TState : class
+    public class EatStew : MinerStateBase<EatStew>
     {
-        private class Nested
-        {
-            internal static readonly TState ClassInstance = Activator.CreateInstance(typeof(TState), true) as TState;
-
-            public static Nested CreateInstance()
-            {
-                return new Nested();
-            }
-        }
-
-        public static TState Instance => Nested.ClassInstance;
-
         public override void Enter(Miner entity)
         {
+            IL.UL.Debug(
+                $"{EntityNames.GetNameOfEntity(entity.ID())}: Smells Reaaal goood Elsa!"
+            );
         }
 
         public override void Execute(Miner entity, float deltaTime)
         {
+            IL.UL.Debug(
+                $"{EntityNames.GetNameOfEntity(entity.ID())}: Tastes real good too!"
+            );
+            entity.FSM().RevertToPreviousState();
         }
 
         public override void Exit(Miner entity)
         {
-        }
-
-        public override bool OnMessage(Miner entity, Telegram telegram)
-        {
-            IL.UL.Error($"OnMessage>>>>{this}");
-            return false;
+            IL.UL.Debug(
+                $"{EntityNames.GetNameOfEntity(entity.ID())}: Thankya li'lle lady. Ah better get back to whatever ah wuz doin'!"
+            );
         }
     }
 }

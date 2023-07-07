@@ -12,7 +12,10 @@
 // *************************************************************************************
 
 using Chapter02.Runtime.Enum;
+using Chapter02.Runtime.Message;
 using Common.Logger;
+using Common.Message;
+using UnityEngine;
 
 namespace Chapter02.Runtime.Entity
 {
@@ -27,6 +30,8 @@ namespace Chapter02.Runtime.Entity
                 );
 
                 entity.Location = EmLocation.Shack;
+
+                MessageDispatcher.Inst().DispatchMessage(0.0f, entity.Id(), (int) EmEntity.EntElsa, EmMsgType.Msg_HiHoneyImHome);
             }
         }
 
@@ -48,6 +53,27 @@ namespace Chapter02.Runtime.Entity
                     $"{EntityNames.GetNameOfEntity(entity.ID())}: ZZZZ... "
                 );
             }
+        }
+
+        public override bool OnMessage(Miner entity, Telegram telegram)
+        {
+            switch (telegram.MsgType)
+            {
+                case EmMsgType.Msg_HiHoneyImHome:
+                {
+                    IL.UL.Debug(
+                        $"Message handled by {EntityNames.GetNameOfEntity(entity.ID())} at time: {Time.timeSinceLevelLoad}!"
+                    );
+                    IL.UL.Debug(
+                        $"{EntityNames.GetNameOfEntity(entity.ID())}: Okay Hun, ahm a comin'!"
+                    );
+
+                    entity.FSM().ChangeState(EatStew.Instance);
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public override void Exit(Miner entity)

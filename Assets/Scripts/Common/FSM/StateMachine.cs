@@ -11,6 +11,8 @@
 // ==============================================================
 // *************************************************************************************
 
+using Common.Message;
+
 namespace Common.FSM
 {
     public class StateMachine<TEntityType>
@@ -63,6 +65,27 @@ namespace Common.FSM
         public void RevertToPreviousState()
         {
             ChangeState(PState);
+        }
+
+        public bool HandleMessage(Telegram telegram)
+        {
+            if (CState != null)
+            {
+                if (CState.OnMessage(m_Owner, telegram))
+                {
+                    return true;
+                }
+            }
+
+            if (GState != null)
+            {
+                if (GState.OnMessage(m_Owner, telegram))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
