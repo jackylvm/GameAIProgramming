@@ -23,6 +23,7 @@ namespace Chapter03.Runtime.Entity
 
         public Vehicle(int id) : base(id)
         {
+            SteeringBehaviors = new SteeringBehaviors(this);
         }
 
         public override void DoStart()
