@@ -23,18 +23,21 @@ namespace Chapter03.Runtime.Entity
         /// </summary>
         protected Vector3 m_vVelocity;
 
-        private Vector3 Velocity
+        public Vector3 Velocity
         {
             get => m_vVelocity;
             set => m_vVelocity = value;
         }
+
+        public float Speed => m_vVelocity.magnitude;
+        public float SpeedSq => m_vVelocity.sqrMagnitude;
 
         /// <summary>
         /// 归一化向量,指向实体的朝向
         /// </summary>
         protected Vector3 m_vHeading;
 
-        private Vector3 Heading
+        public Vector3 Heading
         {
             get => m_vHeading;
             set => m_vHeading = value;
@@ -45,7 +48,7 @@ namespace Chapter03.Runtime.Entity
         /// </summary>
         protected Vector3 m_vSide;
 
-        private Vector3 Side
+        public Vector3 Side
         {
             get => m_vSide;
             set => m_vSide = value;
@@ -56,7 +59,7 @@ namespace Chapter03.Runtime.Entity
         /// </summary>
         protected float m_dMass;
 
-        private float Mass
+        public float Mass
         {
             get => m_dMass;
             set => m_dMass = value;
@@ -67,7 +70,7 @@ namespace Chapter03.Runtime.Entity
         /// </summary>
         protected float m_dMaxSpeed;
 
-        private float MaxSpeed
+        public float MaxSpeed
         {
             get => m_dMaxSpeed;
             set => m_dMaxSpeed = value;
@@ -78,7 +81,7 @@ namespace Chapter03.Runtime.Entity
         /// </summary>
         protected float m_dMaxForce;
 
-        private float MaxForce
+        public float MaxForce
         {
             get => m_dMaxForce;
             set => m_dMaxForce = value;
@@ -89,7 +92,7 @@ namespace Chapter03.Runtime.Entity
         /// </summary>
         protected float m_dMaxTurnRate;
 
-        private float MaxTurnRate
+        public float MaxTurnRate
         {
             get => m_dMaxTurnRate;
             set => m_dMaxTurnRate = value;
