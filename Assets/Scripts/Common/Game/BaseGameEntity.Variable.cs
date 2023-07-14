@@ -22,7 +22,7 @@ namespace Common.Game
         /// </summary>
         protected Vector3 m_vPos;
 
-        private Vector3 Pos
+        public Vector3 Pos
         {
             get => m_vPos;
             set => m_vPos = value;
@@ -33,7 +33,7 @@ namespace Common.Game
         /// </summary>
         protected Vector3 m_vScale;
 
-        private Vector3 Scale
+        public Vector3 Scale
         {
             get => m_vScale;
             set => m_vScale = value;
@@ -44,7 +44,7 @@ namespace Common.Game
         /// </summary>
         protected float m_dBoundingRadius;
 
-        private float BRadius
+        public float BRadius
         {
             get => m_dBoundingRadius;
             set => m_dBoundingRadius = value;
